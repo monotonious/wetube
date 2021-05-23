@@ -1,5 +1,6 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const actionBtn = document.getElementById("actionBtn");
+const btnContainer = document.getElementsByClassName("upload__video");
 const video = document.getElementById("preview");
 
 let stream;
@@ -23,9 +24,12 @@ const downloadFile = (fileUrl, fileName) => {
 // 다운로드 버튼
 const handleDownload = async () => {
   // 이벤트 제거
-  actionBtn.removeEventListener("click", handleDownload);
-
-  actionBtn.innerText = "Transcoding...";
+  actionBtn.removeEventListener("click", () => {
+    recorder.stop();
+    handleDownload();
+  });
+  actionBtn.innerText = "Downloading";
+  // actionBtn.innerText = "Transcoding...";
 
   actionBtn.disabled = true;
 
@@ -72,30 +76,36 @@ const handleDownload = async () => {
 };
 
 // 스타트 레코딩
+// 버튼 문구 변경 : 레코딩 -> stop recording -> downloading -> 자동 다운로드 -> record again
 const handleStart = () => {
   // 버튼에 걸어놓았던 이벤트 등 제거
-  actionBtn.innerText = "Recording";
-  actionBtn.disabled = true;
+  actionBtn.innerText = "Stop Recording";
+  actionBtn.disabled = false;
   actionBtn.removeEventListener("click", handleStart);
+  // actionBtn.innerText = "Recording";
+  // actionBtn.disabled = true;
+  // actionBtn.removeEventListener("click", handleStart);
   // 미디어 입력장치로 입력된 스트림 파일을 프로미스 then으로 반환하고, 이를 recoder 변수에 담는다.
   // 레코더 장치를 설정하는 것
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
+  // 스탑버튼 심기
+  actionBtn.addEventListener("click", () => {
+    recorder.stop();
+  });
   // 해당 장치에 레코딩 이벤트(ondataavailable)가 실행될 때의 설정
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data); // videoFile에 이벤트의 메모리 상에 저장된 데이터의 주소를 따서 담는다.
     video.srcObject = null; // 소스 오브젝트 초기화
     video.src = videoFile; // 소스에 비디오파일 url을 넣기
-    video.loop = true; // 루프 설정
-    video.play(); // 레코딩이 끝나면 자동 재생
-    actionBtn.innerText = "Download"; // 아래는 레코딩이 끝나면 이벤트 원복
-    actionBtn.disabled = false;
-    actionBtn.addEventListener("click", handleDownload); // 다운로드로 변경
+    // video.loop = true; // 루프 설정
+    // video.play(); // 레코딩이 끝나면 자동 재생
+    handleDownload(); // 자동 다운로드로 변경
+    actionBtn.removeEventListener("click", () => {
+      recorder.stop();
+    });
   };
   // 레코딩을 시작시킨다.()
   recorder.start();
-  setTimeout(() => {
-    recorder.stop();
-  }, 5000); // 5초 제한이 걸려있는데 이를 설정. 별도로 recorder.stop을 버튼에 이벤트리스너로 걸 수 있겠다.
 };
 
 const init = async () => {
