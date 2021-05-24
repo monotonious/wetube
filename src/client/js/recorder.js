@@ -1,5 +1,6 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const actionBtn = document.getElementById("actionBtn");
+const desc = document.getElementById("desc");
 const btnContainer = document.getElementsByClassName("upload__video");
 const video = document.getElementById("preview");
 
@@ -76,7 +77,7 @@ const handleDownload = async () => {
 };
 
 // 스타트 레코딩
-// 버튼 문구 변경 : 레코딩 -> stop recording -> downloading -> 자동 다운로드 -> record again
+// 버튼 문구 변경 : 레코딩 -> stop recording -> downloading ->  record again
 const handleStart = () => {
   // 버튼에 걸어놓았던 이벤트 등 제거
   actionBtn.innerText = "Stop Recording";
@@ -118,6 +119,24 @@ const init = async () => {
   }); // 미디어 입력장치 이용 허가를 받고 그 스트림 파일을 담는다.
   video.srcObject = stream; // 이를 video의 srcObject 속성에 넣는다.
   video.play(); // 미디어 입력장치로 들어오는 stream이 라이브로 재생된다.
+  // desc.setAttribute("class", "desc");
+  const line_head = document.createElement("p");
+  line_head.innerText = " 레코딩 이용 가이드";
+  const line_1 = document.createElement("li");
+  line_1.innerText = "1️⃣ Start Recording 버튼을 누르면 녹화가 시작됩니다.";
+  const line_2 = document.createElement("li");
+  line_2.innerText =
+    "2️⃣ Stop Recording 버튼을 누르면 녹화가 종료되면서 자동으로 영상과 섬네일이 다운로드 됩니다.";
+  const line_3 = document.createElement("li");
+  line_3.innerText =
+    "3️⃣ 다운된 영상 및 섬네일 파일을 아래 입력창에 입력해주세요!";
+  const line_4 = document.createElement("li");
+  line_4.innerText =
+    "✅ 스마트폰에서는 녹화 및 파일 첨부 기능이 지원되지 않습니다. 데스크탑이나 노트북을 이용 부탁드립니다.";
+  const line_5 = document.createElement("li");
+  line_5.innerText =
+    "✅ 10초 이상의 영상을 만드실 때는 다른 기기를 이용하여 녹화한 영상파일을 업로드 하시기 바랍니다. 😀";
+  desc.append(line_head, line_1, line_2, line_3, line_4, line_5);
 };
 
 init();
