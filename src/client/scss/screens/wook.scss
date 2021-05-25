@@ -1,0 +1,157 @@
+// @font-face {
+//   font-family: "tmon";
+//   src: url("../font/TmonMonsori.ttf.ttf");
+// }
+
+.iconColumn {
+  display: flex;
+  position: relative;
+}
+
+.fabwook {
+  opacity: 0;
+  color: rgb(200, 0, 0);
+  animation: iconAnimation 6s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.on {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 0.6s;
+}
+.tw {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 0.8s;
+}
+.th {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1s;
+}
+.fo {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.2s;
+}
+.fi {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.4s;
+}
+.si {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.6s;
+}
+.se {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.8s;
+}
+.ei {
+  color: white;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 2s;
+}
+
+.hye {
+  color: white;
+  z-index: 10000;
+  // position: absolute;
+  font-size: 2rem;
+  right: 0%;
+  top: -30%;
+  opacity: 0;
+  animation: wordAnimation 4.5s ease-out forwards;
+  animation-delay: 2s;
+}
+
+.subtitle {
+  display: flex;
+  color: white;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.sub__on {
+  color: white;
+  font-size: 3rem;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+.sub__tw {
+  color: white;
+  font-size: 3rem;
+  opacity: 0;
+  animation: wordAnimation 6s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes wordAnimation {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(-90px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-90px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+}
+
+@keyframes iconAnimation {
+  0% {
+    transform: translateX(-120px);
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(0px);
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(0px);
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-120px);
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+.splashScreen {
+  animation: hideSplashScreen 1s ease-out forwards;
+  animation-delay: 8s;
+}
+
+@keyframes hideSplashScreen {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

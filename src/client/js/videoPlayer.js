@@ -50,7 +50,7 @@ const handleVolumeChange = (event) => {
   video.volume = value;
 };
 
-const formatTime = (seconds) =>
+export const formatTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleLoadedMetadata = () => {

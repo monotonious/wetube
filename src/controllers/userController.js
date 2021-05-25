@@ -226,7 +226,7 @@ export const getTokenKakaoLogin = async (req, res) => {
 // 로그아웃
 export const logout = (req, res) => {
   req.session.destroy();
-  req.flash("info", "Bye Bye");
+  // req.flash("info", "Bye Bye");
   return res.redirect("/");
 };
 export const getEdit = async (req, res) => {

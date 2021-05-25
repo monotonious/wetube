@@ -19,6 +19,7 @@
 @import "./screens/edit-profile.scss";
 @import "./screens/upload.scss";
 @import "./screens/watch.scss";
+@import "./screens/wook.scss";
 // Defaults
 a {
   color: inherit;
@@ -30,6 +31,30 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
   color: white;
+}
+
+.container {
+  position: relative;
+}
+
+.logo__background {
+  display: flex;
+  flex-direction: column;
+  background-color: #0e1117;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  position: fixed;
+}
+
+.mainwook {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8rem;
 }
 
 main {
@@ -48,6 +73,14 @@ main {
     transform: translateY(-50px);
     opacity: 0;
   }
+}
+
+#canvas {
+  z-index: 99;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transform: scale(1.1);
 }
 
 .message {

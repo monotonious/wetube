@@ -9,6 +9,7 @@ module.exports = {
     videoPlayer: BASE_JS + "videoPlayer.js",
     recorder: BASE_JS + "recorder.js",
     commentSection: BASE_JS + "commentSection.js",
+    confetti: BASE_JS + "confetti.js",
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -34,6 +35,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: { loader: "file-loader" },
       },
     ],
   },

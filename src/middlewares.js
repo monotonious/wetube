@@ -6,6 +6,7 @@ const s3 = new aws.S3({
   credentials: {
     accessKeyId: process.env.S3_ACCESS_KEY_ID,
     secretAccessKey: process.env.S3_SECRET_ACCESS_KEY_ID,
+    region: "ap-northeast-2",
   },
 });
 
@@ -54,13 +55,13 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: isHeroku ? s3ImageUploader : undefined,
+  storage: true ? s3ImageUploader : undefined,
 });
 
 export const videoUpload = multer({
   dest: "uploads/videos/",
   limits: {
-    fileSize: 1000000000, // 1GB
+    fileSize: 10485760000, // 1048576 Byte = 100 MB = 약 10분
   },
-  storage: isHeroku ? s3VideoUploader : undefined,
+  storage: true ? s3VideoUploader : undefined,
 });

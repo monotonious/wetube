@@ -24,11 +24,6 @@ const downloadFile = (fileUrl, fileName) => {
 
 // 다운로드 버튼
 const handleDownload = async () => {
-  // 이벤트 제거
-  actionBtn.removeEventListener("click", () => {
-    recorder.stop();
-    handleDownload();
-  });
   actionBtn.innerText = "Downloading";
   // actionBtn.innerText = "Transcoding...";
 
@@ -80,29 +75,25 @@ const handleDownload = async () => {
 // 버튼 문구 변경 : 레코딩 -> stop recording -> downloading ->  record again
 const handleStart = () => {
   // 버튼에 걸어놓았던 이벤트 등 제거
-  actionBtn.innerText = "Stop Recording";
+  actionBtn.innerText = `Stop Recording`;
   actionBtn.disabled = false;
   actionBtn.removeEventListener("click", handleStart);
-  // actionBtn.innerText = "Recording";
-  // actionBtn.disabled = true;
-  // actionBtn.removeEventListener("click", handleStart);
-  // 미디어 입력장치로 입력된 스트림 파일을 프로미스 then으로 반환하고, 이를 recoder 변수에 담는다.
-  // 레코더 장치를 설정하는 것
+  // 레코더 장치 설정
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   // 스탑버튼 심기
   actionBtn.addEventListener("click", () => {
     recorder.stop();
   });
-  // 해당 장치에 레코딩 이벤트(ondataavailable)가 실행될 때의 설정
+  // 해당 장치에 레코딩 이벤트(ondataavailable) = 레코딩 스탑 시 설정
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data); // videoFile에 이벤트의 메모리 상에 저장된 데이터의 주소를 따서 담는다.
     video.srcObject = null; // 소스 오브젝트 초기화
     video.src = videoFile; // 소스에 비디오파일 url을 넣기
     // video.loop = true; // 루프 설정
     // video.play(); // 레코딩이 끝나면 자동 재생
-    handleDownload(); // 자동 다운로드로 변경
+    handleDownload(); // 다운로드 핸들러 시작
     actionBtn.removeEventListener("click", () => {
-      recorder.stop();
+      recorder.stop(); // 레코딩 스탑 이벤트 제거
     });
   };
   // 레코딩을 시작시킨다.()
@@ -123,20 +114,22 @@ const init = async () => {
   const line_head = document.createElement("p");
   line_head.innerText = " 레코딩 이용 가이드";
   const line_1 = document.createElement("li");
-  line_1.innerText = "1️⃣ Start Recording 버튼을 누르면 녹화가 시작됩니다.";
+  line_1.innerText = "1️ Start Recording 버튼을 누르면 녹화가 시작됩니다.";
   const line_2 = document.createElement("li");
   line_2.innerText =
-    "2️⃣ Stop Recording 버튼을 누르면 녹화가 종료되면서 자동으로 영상과 섬네일이 다운로드 됩니다.";
+    "2 Stop Recording 버튼을 누르면 녹화가 종료되면서 자동으로 영상과 섬네일이 다운로드 됩니다.";
   const line_3 = document.createElement("li");
   line_3.innerText =
-    "3️⃣ 다운된 영상 및 섬네일 파일을 아래 입력창에 입력해주세요!";
+    "3️ 다운로드 하는데 다소 시간이 소요되니 양해부탁드립니다.";
   const line_4 = document.createElement("li");
-  line_4.innerText =
-    "✅ 스마트폰에서는 녹화 및 파일 첨부 기능이 지원되지 않습니다. 데스크탑이나 노트북을 이용 부탁드립니다.";
+  line_4.innerText = "4️ 다운된 영상 및 섬네일 파일을 아래 업로드 해주세요!";
   const line_5 = document.createElement("li");
   line_5.innerText =
-    "✅ 10초 이상의 영상을 만드실 때는 다른 기기를 이용하여 녹화한 영상파일을 업로드 하시기 바랍니다. 😀";
-  desc.append(line_head, line_1, line_2, line_3, line_4, line_5);
+    "v 스마트폰에서는 녹화 및 파일 첨부 기능이 지원되지 않습니다. 데스크탑이나 노트북을 이용 부탁드립니다.";
+  const line_6 = document.createElement("li");
+  line_6.innerText =
+    "v 10초 이상의 영상을 만드실 때는 다른 기기를 이용하여 녹화한 영상파일을 업로드 하시기 바랍니다. 😀";
+  desc.append(line_head, line_1, line_2, line_3, line_4, line_5, line_6);
 };
 
 init();
