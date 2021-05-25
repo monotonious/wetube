@@ -8,24 +8,25 @@ block content
                     +video(video)
                 else
                     span.empty__message No videos found
-        .logo__background.splashScreen
-            .mainwook
-                .iconColumn
-                    span.hye Hye
-                    i.fab.fa-youtube.fabwook
-                span.on W
-                span.tw o
-                span.th o
-                span.fo k
-                span.fi t
-                span.si u
-                span.se b                    
-                span.ei e
-            .subtitle
-                .sub__col
-                .sub__col
-                span.sub__on Happy Birthday!
-                //- span.sub__tw  
+        if !loggedIn
+            .logo__background.splashScreen
+                .mainwook
+                    .iconColumn
+                        span.hye Hye
+                        i.fab.fa-youtube.fabwook
+                    span.on W
+                    span.tw o
+                    span.th o
+                    span.fo k
+                    span.fi t
+                    span.si u
+                    span.se b                    
+                    span.ei e
+                .subtitle
+                    .sub__col
+                    .sub__col
+                    span.sub__on Happy Birthday!
+                    //- span.sub__tw  
         
 
     canvas#canvas.splashScreen
