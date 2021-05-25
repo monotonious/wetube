@@ -12,3 +12,20 @@ footer {
 .congText {
   font-size: 1.5rem;
 }
+
+.birth_img {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.scale {
+  padding: 50px;
+  margin: 0 auto;
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
