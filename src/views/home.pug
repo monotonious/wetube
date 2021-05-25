@@ -2,7 +2,13 @@ extends base
 include mixins/video
 
 block content
-    .logo__background.splashScreen
+    .container
+        div.video-grid
+                each video in videos
+                    +video(video)
+                else
+                    span.empty__message No videos found
+        .logo__background.splashScreen
             .mainwook
                 .iconColumn
                     span.hye Hye
@@ -19,11 +25,7 @@ block content
                 .sub__col
                 .sub__col
                 span.sub__on Happy Birthday!
-                //- span.sub__tw      
-    div.video-grid
-            each video in videos
-                +video(video)
-            else
-                span.empty__message No videos found
+                //- span.sub__tw  
+        
+
     canvas#canvas.splashScreen
-    
