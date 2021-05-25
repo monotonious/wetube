@@ -2,9 +2,28 @@ extends base
 include mixins/video
 
 block content
+    .logo__background.splashScreen
+            .mainwook
+                .iconColumn
+                    span.hye Hye
+                    i.fab.fa-youtube.fabwook
+                span.on W
+                span.tw o
+                span.th o
+                span.fo k
+                span.fi t
+                span.si u
+                span.se b                    
+                span.ei e
+            .subtitle
+                .sub__col
+                .sub__col
+                span.sub__on Happy Birthday!
+                //- span.sub__tw      
     div.video-grid
             each video in videos
                 +video(video)
             else
                 span.empty__message No videos found
+    canvas#canvas.splashScreen
     
