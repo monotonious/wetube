@@ -36,3 +36,28 @@ header {
     border-radius: 50%;
   }
 }
+
+//스마트폰
+@media screen and (max-width: 500px) {
+  header {
+    padding: 5px;
+
+    .header__logo {
+      font-size: 24px;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+}

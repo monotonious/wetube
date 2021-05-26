@@ -20,26 +20,39 @@ const removeComment = async (comment, videoId) => {
 
 const addComment = (text, commentId, videoId) => {
   const videoComments = document.querySelector(".video__comments ul");
+
+  const container = document.createElement("div");
+  container.className = "video__comment__container";
+
   const newComment = document.createElement("li");
   newComment.dataset.id = commentId;
   newComment.className = "video__comment";
+
   const username = document.createElement("span");
   username.innerText = `${user.textContent}`;
   username.className = "username__comments";
+
   const icon = document.createElement("i");
   icon.className = "fas fa-comment";
+
+  const p = document.createElement("p");
+  p.innerText = ` ${text}`;
+
   const span = document.createElement("span");
-  span.innerText = ` ${text}`;
-  const span2 = document.createElement("span");
-  span2.innerText = "❌";
-  span2.addEventListener("click", () => {
+  span.className = "remove_comment";
+  span.innerText = "❌";
+  span.addEventListener("click", () => {
     removeComment(newComment, videoId);
   });
+
+  container.appendChild(newComment);
+  container.appendChild(span);
+
   newComment.appendChild(icon);
   newComment.appendChild(username);
-  newComment.appendChild(span);
-  newComment.appendChild(span2);
-  videoComments.prepend(newComment);
+  newComment.appendChild(p);
+
+  videoComments.prepend(container);
 };
 
 const handleSubmit = async (event) => {
