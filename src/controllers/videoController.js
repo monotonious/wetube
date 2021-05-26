@@ -6,6 +6,7 @@ export const home = async (req, res) => {
   const videos = await Video.find({})
     .sort({ createdAt: "desc" }) // 최신순
     .populate("owner"); // owner 테이블을 붙여서 들어옴
+  console.log(res.locals.loggedInUser);
   return res.render("home", { pageTitle: "Home", videos });
 };
 

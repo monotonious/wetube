@@ -108,3 +108,55 @@ main {
     color: white;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+
+  #canvas {
+    z-index: 99;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+  }
+  .mainwook {
+    margin-top: 30px;
+  }
+  // wooktube
+  .mainwook span {
+    font-size: 40px;
+  }
+  //hye
+  .iconColumn span {
+    font-size: 20px;
+  }
+  //logo
+  .iconColumn i {
+    font-size: 70px;
+  }
+  .subtitle {
+    margin-bottom: 200px;
+  }
+  //hp
+  .subtitle span {
+    font-size: 50px;
+    margin-right: 25px;
+  }
+  .message {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 200px;
+    padding: 10px 20px;
+    border-radius: 10000px;
+    text-align: center;
+    animation: goAway 0.5s ease-in-out forwards;
+    animation-delay: 5s;
+    &.error {
+      background-color: tomato;
+      color: white;
+    }
+  }
+}

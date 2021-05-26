@@ -36,7 +36,8 @@ block content
         div.video__add-comments
             form.video__comment-form#commentForm
                 div#comment_user=String(loggedInUser.name)
-                textarea(cols="50", rows="5", placeholder="Write a nice commment...")
+                div.textarea_comment
+                    textarea(cols="50", rows="5", placeholder="Write a nice commment...")
                 button Add Comment
     div.video__comments
         ul

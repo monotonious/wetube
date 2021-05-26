@@ -20,3 +20,11 @@
   height: 150px;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 500px) {
+  .video-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

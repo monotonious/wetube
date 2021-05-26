@@ -12,6 +12,7 @@ header {
   }
   ul {
     display: flex;
+    align-self: flex-end;
     justify-content: space-between;
     align-items: center;
     li {
@@ -40,23 +41,33 @@ header {
 //스마트폰
 @media screen and (max-width: 500px) {
   header {
-    padding: 5px;
-
+    width: 90%;
+    padding-left: 10px;
+    padding-top: 10px;
     .header__logo {
-      font-size: 24px;
+      font-size: 18px;
     }
 
-    ul {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    nav {
+      margin-left: 5px;
+      padding-left: 10px;
 
-      li {
+      ul {
+        right: 10;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 14px;
-        font-weight: 400;
+
+        li {
+          text-align: center;
+          margin-left: 5px;
+          margin-right: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          font-weight: 400;
+        }
       }
     }
   }

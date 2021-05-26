@@ -1,5 +1,7 @@
 .video__data {
   margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-self: flex-start;
@@ -44,5 +46,28 @@
   }
   .remove_comment {
     font-size: 3px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .video__add-comments {
+    width: 90%;
+    textarea {
+      width: 100%;
+    }
+  }
+  .video__comments {
+    .video__comment__container {
+      justify-content: center;
+    }
+    .video__comment {
+      padding: 10px;
+      margin-left: 5px;
+      width: 80%;
+      border-radius: 15px;
+      background-color: white;
+      color: black;
+      margin-bottom: 10px;
+    }
   }
 }
