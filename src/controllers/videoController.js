@@ -12,7 +12,12 @@ export const home = async (req, res) => {
 // 비디오 보기
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner").populate("comments");
+  const video = await Video.findById(id)
+    .populate("owner")
+    .populate({
+      path: "comments",
+      populate: { path: "owner", select: "name" },
+    });
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
   }
@@ -149,4 +154,16 @@ export const createComment = async (req, res) => {
   video.comments.push(comment._id);
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    params: { vid, cid },
+  } = req;
+  const { ok } = await Comment.deleteOne({
+    _id: cid,
+  });
+  if (ok === 1) {
+    return res.sendStatus(200);
+  }
 };
