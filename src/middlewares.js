@@ -14,13 +14,13 @@ const isHeroku = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "sly-image-storage",
+  bucket: "wooktube-for-deploy",
   acl: "public-read",
 });
 
 const s3VideoUploader = multerS3({
   s3: s3,
-  bucket: "sly-image-storage",
+  bucket: "wooktube-for-deploy",
   acl: "public-read",
 });
 
