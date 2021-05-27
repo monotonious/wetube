@@ -137,8 +137,8 @@ export const finishGithubLogin = async (req, res) => {
 
 // 리다이렉트 uri
 const REST_API_KEY = "1cbd75064aeeece9584e750dee323a1d";
-const REDIRECT_URIl = "http://localhost:4000/users/kakao/permit";
-const REDIRECT_URI = "https://wooktube.herokuapp.com/users/kakao/permit";
+const REDIRECT_URI = "http://localhost:4000/users/kakao/permit";
+const REDIRECT_URIp = "https://wooktube.herokuapp.com/users/kakao/permit";
 
 // 카카오 로그인 과정
 // GET http://localhost:4000/users/kakao/start => 로그인 스타트 => 서버 라우터
@@ -204,9 +204,9 @@ export const getTokenKakaoLogin = async (req, res) => {
     const { thumbnail_image, nickname } = userData.properties;
     const { email } = userData.kakao_account;
 
-    let user = await User.findOne({ email: email });
-    if (!user) {
-      user = await User.create({
+    let user = await User.findOneAndUpdate(
+      { email: email },
+      {
         avatarUrl: thumbnail_image,
         name: nickname,
         username: nickname,
@@ -214,8 +214,19 @@ export const getTokenKakaoLogin = async (req, res) => {
         password: "",
         socialOnly: true,
         location: "",
-      });
-    }
+      }
+    );
+    // if (!user) {
+    //   user = await User.create({
+    //     avatarUrl: thumbnail_image,
+    //     name: nickname,
+    //     username: nickname,
+    //     email: email,
+    //     password: "",
+    //     socialOnly: true,
+    //     location: "",
+    //   });
+    // }
     req.session.loggedIn = true;
     req.session.user = user;
     return res.redirect("/");

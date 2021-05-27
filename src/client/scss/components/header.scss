@@ -1,5 +1,6 @@
 header {
   padding: 20px 50px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,17 +42,19 @@ header {
 //스마트폰
 @media screen and (max-width: 500px) {
   header {
-    width: 90%;
-    padding-left: 10px;
-    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+
     .header__logo {
-      font-size: 18px;
+      font-size: 25px;
     }
 
     nav {
-      margin-left: 5px;
-      padding-left: 10px;
-
+      justify-content: flex-end;
       ul {
         right: 10;
         display: flex;
@@ -65,7 +68,7 @@ header {
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 12px;
+          font-size: 13px;
           font-weight: 400;
         }
       }

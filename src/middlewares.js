@@ -2,6 +2,7 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 
+//로컬일 때는 내 s3로, 배포 버전일 때는 인승 계정 s3로 업로드 됨
 const s3 = new aws.S3({
   credentials: {
     accessKeyId: process.env.S3_ACCESS_KEY_ID,

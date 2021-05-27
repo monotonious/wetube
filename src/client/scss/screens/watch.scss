@@ -22,6 +22,14 @@
   }
 }
 
+#comment_user {
+  margin-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;
@@ -46,6 +54,7 @@
   }
   .remove_comment {
     font-size: 3px;
+    cursor: pointer;
   }
 }
 

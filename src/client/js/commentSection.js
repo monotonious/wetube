@@ -1,18 +1,17 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const removeCommentBtn = document.getElementsByClassName("remove_comment");
+const oneCommentContainer = document.getElementsByClassName(
+  "video__comment__container"
+);
 const user = document.getElementById("comment_user");
 
-const removeComment = async (comment, videoId) => {
-  const response = await fetch(
-    `/api/videos/${videoId}/comment/${comment.dataset.id}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+const removeComment = async (commentId, videoId, comment) => {
+  const response = await fetch(`/api/videos/${videoId}/comment/${commentId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   if (response.status === 200) {
     comment.remove();
   }
@@ -42,7 +41,7 @@ const addComment = (text, commentId, videoId) => {
   span.className = "remove_comment";
   span.innerText = "❌";
   span.addEventListener("click", () => {
-    removeComment(newComment, videoId);
+    removeComment(commentId, videoId, container);
   });
 
   container.appendChild(newComment);
@@ -80,4 +79,16 @@ const handleSubmit = async (event) => {
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
+  for (i = 0; i < oneCommentContainer.length; i++) {
+    const videoId = videoContainer.getAttribute("data-id");
+    const comment = oneCommentContainer[i].firstChild;
+    const x = oneCommentContainer[i].lastChild;
+    const commentId = comment.getAttribute("data-id");
+
+    // console.log(comment, videoId, x, commentId);
+
+    x.addEventListener("click", () => {
+      removeComment(commentId, videoId, comment);
+    });
+  }
 }
