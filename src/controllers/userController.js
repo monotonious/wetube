@@ -137,8 +137,8 @@ export const finishGithubLogin = async (req, res) => {
 
 // 리다이렉트 uri
 const REST_API_KEY = "1cbd75064aeeece9584e750dee323a1d";
-const REDIRECT_URI = "http://localhost:4000/users/kakao/permit";
-const REDIRECT_URIp = "https://wooktube.herokuapp.com/users/kakao/permit";
+const REDIRECT_URIp = "http://localhost:4000/users/kakao/permit";
+const REDIRECT_URI = "https://wooktube.herokuapp.com/users/kakao/permit";
 
 // 카카오 로그인 과정
 // GET http://localhost:4000/users/kakao/start => 로그인 스타트 => 서버 라우터
